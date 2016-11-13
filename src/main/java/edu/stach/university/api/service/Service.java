@@ -18,9 +18,41 @@ import java.util.Collection;
  * @since 11/13/16
  */
 public interface Service<T> {
+    /**
+     * returns all entities
+     *
+     * @return the entities
+     */
     public Collection<T> findAll();
+
+    /**
+     * returns an entity
+     *
+     * @param id the id of the entity
+     * @return the entity
+     */
     public T findOne(BigInteger id);
+
+    /**
+     * creates a new entity
+     *
+     * @param data the new entity
+     * @return the new entity
+     */
     public T create(T data);
+
+    /**
+     * updates an existing entity
+     *
+     * @param data the entity to update
+     * @return the updated entity
+     */
     public T update(T data);
+
+    /**
+     * deletes an entity
+     *
+     * @param id the id of the entity
+     */
     public void delete(BigInteger id);
 }

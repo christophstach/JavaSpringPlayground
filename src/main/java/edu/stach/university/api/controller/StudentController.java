@@ -62,9 +62,7 @@ public class StudentController {
         Student existingStudent = this.studentService.findOne(student.getId());
 
         if (existingStudent == null) {
-            this.studentService.create(student);
-
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(this.studentService.create(student), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -81,9 +79,7 @@ public class StudentController {
         Student existingStudent = this.studentService.findOne(student.getId());
 
         if (existingStudent != null) {
-            this.studentService.update(student);
-
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(this.studentService.update(student), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

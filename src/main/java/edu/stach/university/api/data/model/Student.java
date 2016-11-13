@@ -10,19 +10,29 @@
 
 package edu.stach.university.api.data.model;
 
-import javax.persistence.Entity;
-import java.math.BigInteger;
+import java.util.Collection;
 
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
  * @since 11/12/16
  */
-
 public class Student extends Person {
+    private Collection<Course> courses;
+
+
     public Student() {
+        super();
     }
 
     public Student(String firstName, String lastName) {
         super(firstName, lastName);
+    }
+
+    public Collection<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Collection<Course> courses) {
+        this.courses = courses;
     }
 }

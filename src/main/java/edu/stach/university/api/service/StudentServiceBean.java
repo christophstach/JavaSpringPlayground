@@ -10,11 +10,8 @@
 
 package edu.stach.university.api.service;
 
-import edu.stach.university.api.data.model.Person;
 import edu.stach.university.api.data.model.Student;
-import edu.stach.university.api.data.repository.StudentRepository;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.PostConstruct;
 import java.math.BigInteger;
 import java.util.*;
@@ -31,9 +28,9 @@ public class StudentServiceBean implements StudentService {
     public void init() {
         this.studentRepository = new HashMap<>();
 
-        this.studentRepository.put(Person.getNextId(), new Student("Christoph", "Stach"));
-        this.studentRepository.put(Person.getNextId(), new Student("Pauline", "Stach"));
-        this.studentRepository.put(Person.getNextId(), new Student("Adrian", "Saiz Ferri"));
+        this.studentRepository.put(Student.getNextId(), new Student("Christoph", "Stach"));
+        this.studentRepository.put(Student.getNextId(), new Student("Pauline", "Stach"));
+        this.studentRepository.put(Student.getNextId(), new Student("Adrian", "Saiz Ferri"));
     }
 
     @Override
@@ -49,15 +46,17 @@ public class StudentServiceBean implements StudentService {
 
     @Override
     public Student create(Student data) {
-        this.studentRepository.put(Person.getNextId(), data);
+        data.setId(Student.getNextId());
+        this.studentRepository.put(data.getId(), data);
+
         return data;
     }
 
     @Override
     public Student update(Student data) {
-        data = this.studentRepository.get(data.getId());
+        Student existingData = this.studentRepository.get(data.getId());
 
-        if(data != null) {
+        if(existingData != null) {
             this.studentRepository.replace(data.getId(), data);
         }
 
