@@ -11,6 +11,7 @@
 package edu.stach.university.api.data.model;
 
 import javax.persistence.Entity;
+import java.math.BigInteger;
 
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
@@ -18,4 +19,34 @@ import javax.persistence.Entity;
  */
 
 public class Course {
+    private BigInteger id;
+    private String title;
+    private String description;
+
+    public Course() {
+    }
+
+    public BigInteger getId() {
+        return id;
+    }
+
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

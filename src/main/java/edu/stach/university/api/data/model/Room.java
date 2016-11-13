@@ -10,25 +10,24 @@
 
 package edu.stach.university.api.data.model;
 
-import javax.persistence.Entity;
-import java.util.Collection;
+import java.math.BigInteger;
 
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
  * @since 11/12/16
  */
 
-public class Lecturer extends Employee {
-    private Collection<Lesson> lessons;
+public class Room {
+    private BigInteger id;
 
-    public Lecturer() {
+    public Room() {
     }
 
-    public Collection<Lesson> getLessons() {
-        return lessons;
+    public BigInteger getId() {
+        return id;
     }
 
-    public void setLessons(Collection<Lesson> lessons) {
-        this.lessons = lessons;
+    public void setId(BigInteger id) {
+        this.id = id;
     }
 }
