@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    hibernate:
+      naming:
+        strategy: org.hibernate.cfg.DefaultNamingStrategy
+      ddl-auto: validate
+  datasource:
+    data: classpath:/data/h2/data.sql
+    schema: classpath:/data/h2/schema.sql

@@ -12,6 +12,7 @@ package edu.stach.university.api.service;
 
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.UUID;
 
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
@@ -23,7 +24,7 @@ public interface Service<T> {
      *
      * @return the entities
      */
-    public Collection<T> findAll();
+    public Iterable<T> findAll();
 
     /**
      * returns an entity
@@ -31,7 +32,7 @@ public interface Service<T> {
      * @param id the id of the entity
      * @return the entity
      */
-    public T findOne(BigInteger id);
+    public T findOne(String id);
 
     /**
      * creates a new entity
@@ -54,5 +55,5 @@ public interface Service<T> {
      *
      * @param id the id of the entity
      */
-    public void delete(BigInteger id);
+    public void delete(String id);
 }

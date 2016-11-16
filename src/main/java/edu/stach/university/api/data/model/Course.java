@@ -10,27 +10,42 @@
 
 package edu.stach.university.api.data.model;
 
-import javax.persistence.Entity;
-import java.math.BigInteger;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
 
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
  * @since 11/12/16
  */
-
+@Document
 public class Course {
-    private BigInteger id;
+    @Id
+    private String id;
+
     private String title;
     private String description;
+
+    @DBRef
+    private List<Student> students;
 
     public Course() {
     }
 
-    public BigInteger getId() {
+    public Course(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -48,5 +63,23 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", students=" + students +
+                '}';
     }
 }

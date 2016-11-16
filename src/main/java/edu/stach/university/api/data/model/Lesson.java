@@ -19,7 +19,7 @@ import java.util.Date;
  */
 
 public class Lesson {
-    private BigInteger id;
+    private Long id;
     private Date date;
     private Room room;
     private Lecturer lecturer;
@@ -28,11 +28,11 @@ public class Lesson {
 
     }
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -8,41 +8,63 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package edu.stach.university.api;
+package edu.stach.university.api.service;
 
 import edu.stach.university.api.data.model.Course;
 import edu.stach.university.api.data.repository.CourseRepository;
-import edu.stach.university.api.data.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
+
 
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
- * @since 11/12/16
+ * @since 11/13/16
  */
+@Service
+public class CourseServiceBean implements CourseService {
+    @Autowired
+    private CourseRepository courseRepository;
 
-@SpringBootApplication
-public class Application {
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    @PostConstruct
+    public void init() {
+
     }
 
-    @Bean
-    public CommandLineRunner startupBean() {
-        return new CommandLineRunner() {
-            @Autowired
-            private StudentRepository studentRepository;
-            @Autowired
-            private CourseRepository courseRepository;
+    @Override
+    public Iterable<Course> findAll() {
+        return this.courseRepository.findAll();
+    }
 
-            @Override
-            public void run(String... args) throws Exception {
-                //this.courseRepository.save(new Course("Mathe 1", "Fröse"));
-                //this.courseRepository.save(new Course("Mathe 2", "Fröse"));
+    @Override
+    public Course findOne(String id) {
+        return this.courseRepository.findOne(id);
+
+    }
+
+    @Override
+    public Course create(Course data) {
+        if (data.getId() == null) {
+            return this.courseRepository.save(data);
+        }
+
+        return null;
+    }
+
+    @Override
+    public Course update(Course data) {
+        if (data.getId() != null) {
+            if (this.courseRepository.exists(data.getId())) {
+                return this.courseRepository.save(data);
             }
-        };
+        }
+
+        return null;
+    }
+
+    @Override
+    public void delete(String id) {
+        this.courseRepository.delete(id);
     }
 }

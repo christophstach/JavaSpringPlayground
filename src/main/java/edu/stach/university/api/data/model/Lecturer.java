@@ -10,7 +10,6 @@
 
 package edu.stach.university.api.data.model;
 
-import javax.persistence.Entity;
 import java.util.Collection;
 
 /**
@@ -18,17 +17,6 @@ import java.util.Collection;
  * @since 11/12/16
  */
 
-public class Lecturer extends Employee {
-    private Collection<Lesson> lessons;
+public class Lecturer {
 
-    public Lecturer() {
-    }
-
-    public Collection<Lesson> getLessons() {
-        return lessons;
-    }
-
-    public void setLessons(Collection<Lesson> lessons) {
-        this.lessons = lessons;
-    }
 }

@@ -10,8 +10,12 @@
 
 package edu.stach.university.api.service;
 
+import edu.stach.university.api.data.model.Course;
 import edu.stach.university.api.data.model.Student;
+import edu.stach.university.api.data.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.PostConstruct;
 import java.math.BigInteger;
 import java.util.*;
@@ -22,49 +26,46 @@ import java.util.*;
  */
 @Service
 public class StudentServiceBean implements StudentService {
-    private HashMap<BigInteger, Student> studentRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
     @PostConstruct
     public void init() {
-        this.studentRepository = new HashMap<>();
-
-        this.studentRepository.put(Student.getNextId(), new Student("Christoph", "Stach"));
-        this.studentRepository.put(Student.getNextId(), new Student("Pauline", "Stach"));
-        this.studentRepository.put(Student.getNextId(), new Student("Adrian", "Saiz Ferri"));
     }
 
     @Override
-    public Collection<Student> findAll() {
-        return this.studentRepository.values();
+    public Iterable<Student> findAll() {
+        return this.studentRepository.findAll();
     }
 
     @Override
-    public Student findOne(BigInteger id) {
-        return this.studentRepository.get(id);
+    public Student findOne(String id) {
+        return this.studentRepository.findOne(id);
 
     }
 
     @Override
     public Student create(Student data) {
-        data.setId(Student.getNextId());
-        this.studentRepository.put(data.getId(), data);
+        if (data.getId() == null) {
+            return this.studentRepository.save(data);
+        }
 
-        return data;
+        return null;
     }
 
     @Override
     public Student update(Student data) {
-        Student existingData = this.studentRepository.get(data.getId());
-
-        if(existingData != null) {
-            this.studentRepository.replace(data.getId(), data);
+        if (data.getId() != null) {
+            if (this.studentRepository.exists(data.getId())) {
+                return this.studentRepository.save(data);
+            }
         }
 
-        return data;
+        return null;
     }
 
     @Override
-    public void delete(BigInteger id) {
-        this.studentRepository.remove(id);
+    public void delete(String id) {
+        this.studentRepository.delete(id);
     }
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.UUID;
 
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
@@ -35,7 +36,7 @@ public class StudentController {
      * @return all students
      */
     @RequestMapping(value = "/api/student", method = RequestMethod.GET)
-    public ResponseEntity<Collection<Student>> getStudents() {
+    public ResponseEntity<Iterable<Student>> getStudents() {
         return new ResponseEntity<>(this.studentService.findAll(), HttpStatus.OK);
     }
 
@@ -46,8 +47,7 @@ public class StudentController {
      * @return the student
      */
     @RequestMapping(value = "/api/student/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Student> getStudent(@PathVariable("id") BigInteger id) {
-        System.out.println(id);
+    public ResponseEntity<Student> getStudent(@PathVariable("id") String id) {
         return new ResponseEntity<>(this.studentService.findOne(id), HttpStatus.OK);
     }
 
@@ -59,10 +59,10 @@ public class StudentController {
      */
     @RequestMapping(value = "/api/student", method = RequestMethod.POST)
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-        Student existingStudent = this.studentService.findOne(student.getId());
+        student = this.studentService.create(student);
 
-        if (existingStudent == null) {
-            return new ResponseEntity<>(this.studentService.create(student), HttpStatus.OK);
+        if (student != null) {
+            return new ResponseEntity<>(student, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -76,10 +76,10 @@ public class StudentController {
      */
     @RequestMapping(value = "/api/student", method = RequestMethod.PUT)
     public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
-        Student existingStudent = this.studentService.findOne(student.getId());
+        student = this.studentService.update(student);
 
-        if (existingStudent != null) {
-            return new ResponseEntity<>(this.studentService.update(student), HttpStatus.OK);
+        if (student != null) {
+            return new ResponseEntity<>(student, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

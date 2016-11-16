@@ -16,5 +16,6 @@ import edu.stach.university.api.data.model.Student;
  * @author Christoph Stach - s0555912@htw-berlin.de
  * @since 11/12/16
  */
+
 public interface StudentService extends Service<Student> {
 }

@@ -10,24 +10,22 @@
 
 package edu.stach.university.api.data.model;
 
-import java.math.BigInteger;
-
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
  * @since 11/12/16
  */
 
 public class Room {
-    private BigInteger id;
+    private Long id;
 
     public Room() {
     }
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }
