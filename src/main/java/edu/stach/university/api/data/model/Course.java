@@ -11,26 +11,28 @@
 package edu.stach.university.api.data.model;
 
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.math.BigInteger;
 import java.util.List;
 
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
  * @since 11/12/16
  */
-@Document
+@Entity
 public class Course {
     @Id
-    private String id;
+    @GeneratedValue
+    private BigInteger id;
 
     private String title;
     private String description;
 
-    @DBRef
+
     private List<Student> students;
 
     public Course() {
@@ -41,11 +43,11 @@ public class Course {
         this.description = description;
     }
 
-    public String getId() {
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 

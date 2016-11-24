@@ -12,13 +12,14 @@ package edu.stach.university.api.service;
 
 import edu.stach.university.api.data.model.Course;
 import edu.stach.university.api.data.model.Student;
+import edu.stach.university.api.data.repository.CourseRepository;
 import edu.stach.university.api.data.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import javax.annotation.PostConstruct;
 import java.math.BigInteger;
-import java.util.*;
 
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
@@ -28,6 +29,10 @@ import java.util.*;
 public class StudentServiceBean implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
+
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     @PostConstruct
     public void init() {
@@ -39,7 +44,7 @@ public class StudentServiceBean implements StudentService {
     }
 
     @Override
-    public Student findOne(String id) {
+    public Student findOne(BigInteger id) {
         return this.studentRepository.findOne(id);
 
     }
@@ -47,7 +52,13 @@ public class StudentServiceBean implements StudentService {
     @Override
     public Student create(Student data) {
         if (data.getId() == null) {
-            return this.studentRepository.save(data);
+            Student savedStudent = this.studentRepository.save(data);
+            /*for (Course course : savedStudent.getCourses()) {
+                course.getStudents().add(savedStudent);
+                this.courseRepository.save(course);
+            }*/
+            
+            return savedStudent;
         }
 
         return null;
@@ -65,7 +76,7 @@ public class StudentServiceBean implements StudentService {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(BigInteger id) {
         this.studentRepository.delete(id);
     }
 }

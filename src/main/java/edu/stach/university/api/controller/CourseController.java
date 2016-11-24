@@ -17,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
+
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
  * @since 11/12/16
@@ -43,7 +45,7 @@ public class CourseController {
      * @return the course
      */
     @RequestMapping(value = "/api/course/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Course> getCourse(@PathVariable("id") String id) {
+    public ResponseEntity<Course> getCourse(@PathVariable("id") BigInteger id) {
         return new ResponseEntity<>(this.courseService.findOne(id), HttpStatus.OK);
     }
 

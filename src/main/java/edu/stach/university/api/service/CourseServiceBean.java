@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.math.BigInteger;
 
 
 /**
@@ -38,7 +39,7 @@ public class CourseServiceBean implements CourseService {
     }
 
     @Override
-    public Course findOne(String id) {
+    public Course findOne(BigInteger id) {
         return this.courseRepository.findOne(id);
 
     }
@@ -64,7 +65,7 @@ public class CourseServiceBean implements CourseService {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(BigInteger id) {
         this.courseRepository.delete(id);
     }
 }

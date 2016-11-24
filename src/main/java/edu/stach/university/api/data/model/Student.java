@@ -12,26 +12,26 @@ package edu.stach.university.api.data.model;
 
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import java.math.BigInteger;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
  * @since 11/12/16
  */
-@Document
+@Entity
 public class Student {
     @Id
-    private String id;
+    @GeneratedValue
+    private BigInteger id;
 
     private String firstName;
     private String lastName;
 
-    @DBRef
+
     private List<Course> courses;
 
     public Student() {
@@ -42,11 +42,17 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public String getId() {
+    public Student(String firstName, String lastName, List<Course> courses) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.courses = courses;
+    }
+
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 
@@ -71,6 +77,7 @@ public class Student {
     }
 
     public void setCourses(List<Course> courses) {
+
         this.courses = courses;
     }
 

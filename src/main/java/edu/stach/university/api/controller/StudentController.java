@@ -47,7 +47,7 @@ public class StudentController {
      * @return the student
      */
     @RequestMapping(value = "/api/student/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Student> getStudent(@PathVariable("id") String id) {
+    public ResponseEntity<Student> getStudent(@PathVariable("id") BigInteger id) {
         return new ResponseEntity<>(this.studentService.findOne(id), HttpStatus.OK);
     }
 

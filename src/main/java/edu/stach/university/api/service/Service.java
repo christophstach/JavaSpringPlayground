@@ -32,7 +32,7 @@ public interface Service<T> {
      * @param id the id of the entity
      * @return the entity
      */
-    public T findOne(String id);
+    public T findOne(BigInteger id);
 
     /**
      * creates a new entity
@@ -55,5 +55,5 @@ public interface Service<T> {
      *
      * @param id the id of the entity
      */
-    public void delete(String id);
+    public void delete(BigInteger id);
 }

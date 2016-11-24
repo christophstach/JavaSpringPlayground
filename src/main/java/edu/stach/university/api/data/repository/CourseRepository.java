@@ -13,9 +13,11 @@ package edu.stach.university.api.data.repository;
 import edu.stach.university.api.data.model.Course;
 import org.springframework.data.repository.CrudRepository;
 
+import java.math.BigInteger;
+
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
  * @since 11/12/16
  */
-public interface CourseRepository extends CrudRepository<Course, String> {
+public interface CourseRepository extends CrudRepository<Course, BigInteger> {
 }

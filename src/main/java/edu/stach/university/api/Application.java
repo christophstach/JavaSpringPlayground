@@ -11,6 +11,7 @@
 package edu.stach.university.api;
 
 import edu.stach.university.api.data.model.Course;
+import edu.stach.university.api.data.model.Student;
 import edu.stach.university.api.data.repository.CourseRepository;
 import edu.stach.university.api.data.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
@@ -26,13 +29,18 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Application {
+
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
+
     @Bean
     public CommandLineRunner startupBean() {
         return new CommandLineRunner() {
+
+
             @Autowired
             private StudentRepository studentRepository;
             @Autowired
@@ -40,8 +48,55 @@ public class Application {
 
             @Override
             public void run(String... args) throws Exception {
-                //this.courseRepository.save(new Course("Mathe 1", "Fröse"));
-                //this.courseRepository.save(new Course("Mathe 2", "Fröse"));
+                /*
+                Course c1 = this.courseRepository.save(
+                        new Course(
+                                "Mathematik 1",
+                                "Vektoren & Räume, Matritzen"
+                        )
+                );
+
+                Course c2 = this.courseRepository.save(
+                        new Course(
+                                "Mathematik 2",
+                                "Folgen & Reihen, Differenzialrechnung, Integralrechnung"
+                        )
+                );
+
+                Student s1 = this.studentRepository.save(
+                        new Student(
+                                "Christoph",
+                                "Stach",
+                                Arrays.asList(c1, c2)
+                        )
+                );
+
+                c1.getStudents().add(s1);
+                c2.getStudents().add(s1);
+
+                Student s2 = this.studentRepository.save(
+                        new Student(
+                                "Steffen",
+                                "Exler",
+                                Arrays.asList(c1, c2)
+                        )
+                );
+
+                Student s3 = this.studentRepository.save(
+                        new Student(
+                                "Laila",
+                                "Westphalen",
+                                Arrays.asList(c1)
+                        )
+                );
+
+                Student s4 = this.studentRepository.save(
+                        new Student(
+                                "Miles",
+                                "Lorenz",
+                                Arrays.asList(c2)
+                        )
+                );*/
             }
         };
     }
