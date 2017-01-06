@@ -11,11 +11,51 @@
 package edu.stach.university.api.service;
 
 import edu.stach.university.api.data.model.Student;
+import edu.stach.university.api.data.model.Student;
+
+import java.math.BigInteger;
 
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
  * @since 11/12/16
  */
 
-public interface StudentService extends Service<Student> {
+public interface StudentService {
+    /**
+     * Returns all students
+     *
+     * @return The students
+     */
+    public Iterable<Student> findAll();
+
+    /**
+     * Returns a student
+     *
+     * @param id The id of the students
+     * @return The student
+     */
+    public Student findOne(BigInteger id);
+
+    /**
+     * Creates a new student
+     *
+     * @param data The new student
+     * @return The new student
+     */
+    public Student create(Student data);
+
+    /**
+     * Updates an existing student
+     *
+     * @param data The student to update
+     * @return The updated student
+     */
+    public Student update(Student data);
+
+    /**
+     * Deletes a student
+     *
+     * @param id The id of the student
+     */
+    public void delete(BigInteger id);
 }

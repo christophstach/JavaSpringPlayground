@@ -19,6 +19,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,56 +48,7 @@ public class Application {
             private CourseRepository courseRepository;
 
             @Override
-            public void run(String... args) throws Exception {
-                /*
-                Course c1 = this.courseRepository.save(
-                        new Course(
-                                "Mathematik 1",
-                                "Vektoren & Räume, Matritzen"
-                        )
-                );
-
-                Course c2 = this.courseRepository.save(
-                        new Course(
-                                "Mathematik 2",
-                                "Folgen & Reihen, Differenzialrechnung, Integralrechnung"
-                        )
-                );
-
-                Student s1 = this.studentRepository.save(
-                        new Student(
-                                "Christoph",
-                                "Stach",
-                                Arrays.asList(c1, c2)
-                        )
-                );
-
-                c1.getStudents().add(s1);
-                c2.getStudents().add(s1);
-
-                Student s2 = this.studentRepository.save(
-                        new Student(
-                                "Steffen",
-                                "Exler",
-                                Arrays.asList(c1, c2)
-                        )
-                );
-
-                Student s3 = this.studentRepository.save(
-                        new Student(
-                                "Laila",
-                                "Westphalen",
-                                Arrays.asList(c1)
-                        )
-                );
-
-                Student s4 = this.studentRepository.save(
-                        new Student(
-                                "Miles",
-                                "Lorenz",
-                                Arrays.asList(c2)
-                        )
-                );*/
+            public void run(String[] args) throws Exception {
             }
         };
     }

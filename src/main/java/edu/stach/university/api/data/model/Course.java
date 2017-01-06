@@ -10,9 +10,6 @@
 
 package edu.stach.university.api.data.model;
 
-
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -33,7 +30,7 @@ public class Course {
     private String description;
 
 
-    private List<Student> students;
+    //private List<Student> students;
 
     public Course() {
     }
@@ -67,13 +64,13 @@ public class Course {
         this.description = description;
     }
 
-    public List<Student> getStudents() {
+    /*public List<Student> getStudents() {
         return students;
     }
 
     public void setStudents(List<Student> students) {
         this.students = students;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -81,7 +78,7 @@ public class Course {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", students=" + students +
+                //", students=" + students +
                 '}';
     }
 }

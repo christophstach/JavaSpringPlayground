@@ -11,10 +11,10 @@
 package edu.stach.university.api.data.model;
 
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -31,56 +31,118 @@ public class Student {
     private String firstName;
     private String lastName;
 
-
+    @ManyToMany
     private List<Course> courses;
 
+
+    /**
+     * Constructor
+     */
     public Student() {
+
     }
 
+    /**
+     * Constructor
+     *
+     * @param firstName The firstName
+     * @param lastName  The lastName
+     */
     public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
+    /**
+     * Constructor
+     *
+     * @param firstName The firstName
+     * @param lastName  The lastName
+     * @param courses   The courses
+     */
     public Student(String firstName, String lastName, List<Course> courses) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.courses = courses;
     }
 
+    /**
+     * Getter for id
+     *
+     * @return The id
+     */
     public BigInteger getId() {
-        return id;
+        return this.id;
     }
 
+    /**
+     * Setter for id
+     *
+     * @param id The id
+     */
     public void setId(BigInteger id) {
         this.id = id;
     }
 
+    /**
+     * Getter for firstName
+     *
+     * @return The firstName
+     */
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
+    /**
+     * Setter for firstName
+     *
+     * @param firstName The firstName
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * Getter for lastName
+     *
+     * @return The lastName
+     */
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
+    /**
+     * Setter for lastName
+     *
+     * @param lastName The lastName
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * Getter for courses
+     *
+     * @return The courses
+     */
     public List<Course> getCourses() {
-        return courses;
+        return this.courses;
     }
 
+    /**
+     * Setter for courses
+     *
+     * @param courses The courses
+     */
     public void setCourses(List<Course> courses) {
-
         this.courses = courses;
     }
 
+    /**
+     * Creates a string representation of the student
+     *
+     * @return The string representation of student student
+     */
     @Override
     public String toString() {
         return "Student{" +

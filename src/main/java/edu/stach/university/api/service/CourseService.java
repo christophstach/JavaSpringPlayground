@@ -12,10 +12,49 @@ package edu.stach.university.api.service;
 
 import edu.stach.university.api.data.model.Course;
 
+import java.math.BigInteger;
+
 /**
  * @author Christoph Stach - s0555912@htw-berlin.de
  * @since 11/12/16
  */
 
-public interface CourseService extends Service<Course> {
+public interface CourseService {
+    /**
+     * Returns all courses
+     *
+     * @return Rhe courses
+     */
+    public Iterable<Course> findAll();
+
+    /**
+     * Returns a course
+     *
+     * @param id the id of the courses
+     * @return the course
+     */
+    public Course findOne(BigInteger id);
+
+    /**
+     * Creates a new course
+     *
+     * @param data The new course
+     * @return The new course
+     */
+    public Course create(Course data);
+
+    /**
+     * Updates an existing course
+     *
+     * @param data The course to update
+     * @return The updated course
+     */
+    public Course update(Course data);
+
+    /**
+     * Deletes a course
+     *
+     * @param id The id of the course
+     */
+    public void delete(BigInteger id);
 }
